@@ -1,11 +1,9 @@
 general:
   # Commands to run when the WM has started. This is useful for running a script or launching another application.
   startup_commands: ['shell-exec zebar']
-  # startup_commands: []
 
   # Commands to run just before the WM is shutdown.
   shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
-  # shutdown_commands: []
 
   # Commands to run after the WM config is reloaded.
   config_reload_commands: []
