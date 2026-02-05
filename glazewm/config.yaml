@@ -295,8 +295,8 @@ keybindings:
 binding_modes:
   - name: 'resize'
     keybindings:
-      - commands: ['wm-enable-binding-mode --name resize']
-        bindings: ['']
+      # - commands: ['wm-enable-binding-mode --name resize']
+      #   bindings: ['']
       - commands: ['resize --width -2%']
         bindings: ['h']
       - commands: ['resize --width +2%']
@@ -307,4 +307,3 @@ binding_modes:
         bindings: ['k']
       - commands: ['wm-disable-binding-mode --name resize']
         bindings: ['escape']
-
