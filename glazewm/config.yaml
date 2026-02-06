@@ -1,6 +1,7 @@
 general:
   # Commands to run when the WM has started. This is useful for running a script or launching another application.
-  startup_commands: ['shell-exec zebar']
+  # startup_commands: ['shell-exec zebar']
+  startup_commands: []
 
   # Commands to run just before the WM is shutdown.
   shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
@@ -143,13 +144,13 @@ lwindow_rules:
 keybindings:
   # Shift focus in a given direction.
   - commands: ['focus --direction left']
-    bindings: ['ctrl+alt+h']
+    bindings: ['lwin+h']
   - commands: ['focus --direction down']
-    bindings: ['ctrl+alt+j']
+    bindings: ['lwin+j']
   - commands: ['focus --direction up']
-    bindings: ['ctrl+alt+k']
+    bindings: ['lwin+k']
   - commands: ['focus --direction right']
-    bindings: ['ctrl+alt+l']
+    bindings: ['lwin+l']
 
   # Move focused lwindow in a given direction.
   - commands: ['move --direction left']
