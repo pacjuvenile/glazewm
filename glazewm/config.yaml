@@ -1,11 +1,9 @@
 general:
   # Commands to run when the WM has started. This is useful for running a script or launching another application.
   startup_commands: ['shell-exec zebar']
-  # startup_commands: []
 
   # Commands to run just before the WM is shutdown.
   shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
-  # shutdown_commands: []
 
   # Commands to run after the WM config is reloaded.
   config_reload_commands: []
@@ -72,14 +70,14 @@ gaps:
   scale_with_dpi: true
 
   # Gap between adjacent windows.
-  inner_gap: '15px'
+  inner_gap: '5px'
 
   # Gap between windows and the screen edge.
   outer_gap:
-    top: '50px'
-    right: '15px'
-    bottom: '15px'
-    left: '15px'
+    top: '45px'
+    left: '5px'
+    right: '5px'
+    bottom: '5px'
 
 window_effects:
   # Visual effects to apply to the focused window.
@@ -143,167 +141,82 @@ window_rules:
         window_class: { not_regex: 'PPTFrameClass' }
 
 keybindings:
+  # Re-evaluate configuration file.
+  - commands: ['wm-reload-config']
+    bindings: ['lwin+r']
+
+  # Change tiling direction.
+  - commands: ['toggle-tiling-direction']
+    bindings: []
+
   # Shift focus in a given direction.
   - commands: ['focus --direction left']
     bindings: ['lwin+h']
-  - commands: ['focus --direction down']
-    bindings: ['lwin+j']
-  - commands: ['focus --direction up']
-    bindings: ['lwin+k']
   - commands: ['focus --direction right']
     bindings: ['lwin+l']
+  - commands: ['focus --direction up']
+    bindings: ['lwin+k']
+  - commands: ['focus --direction down']
+    bindings: ['lwin+j']
 
-  # Move focused lwindow in a given direction.
-  - commands: ['move --direction left']
-    bindings: ['lwin+alt+shift+h', 'lwin+alt+shift+left']
-  - commands: ['move --direction right']
-    bindings: ['lwin+alt+shift+l', 'lwin+alt+shift+right']
-  - commands: ['move --direction up']
-    bindings: ['lwin+alt+shift+k', 'lwin+alt+shift+up']
-  - commands: ['move --direction down']
-    bindings: ['lwin+alt+shift+j', 'lwin+alt+shift+down']
-
-  # Resize focused lwindow by a percentage or pixel amount.
+  # Resize focused window by a percentage or pixel amount.
   - commands: ['resize --width -2%']
-    bindings: ['lwin+alt+u']
+    bindings: ['lwin+shift+h']
   - commands: ['resize --width +2%']
-    bindings: ['lwin+alt+p']
-  - commands: ['resize --height +2%']
-    bindings: ['lwin+alt+o']
+    bindings: ['lwin+shift+l']
   - commands: ['resize --height -2%']
-    bindings: ['lwin+alt+i']
+    bindings: ['lwin+shift+k']
+  - commands: ['resize --height +2%']
+    bindings: ['lwin+shift+j']
 
-  # As an lwin+alternative to the resize keybindings above, resize mode enables
-  # resizing via arrow keys or HJKL. The binding mode is defined above with
-  # the name 'resize'.
-  - commands: ['wm-enable-binding-mode --name resize']
-    bindings: ['lwin+alt+r']
+  # Move focused window in a given direction.
+  - commands: ['move --direction left']
+    bindings: ['lwin+alt+h']
+  - commands: ['move --direction right']
+    bindings: ['lwin+alt+l']
+  - commands: ['move --direction up']
+    bindings: ['lwin+alt+k']
+  - commands: ['move --direction down']
+    bindings: ['lwin+alt+j']
 
-  # Disables lwindow management and all other keybindings until lwin+alt+shift+p
-  # is pressed again.
-  - commands: ['wm-toggle-pause']
-    bindings: ['lwin+alt+shift+p']
-
-  # Change tiling direction. This determines where new tiling lwindows will
-  # be inserted.
-  - commands: ['toggle-tiling-direction']
-    bindings: ['lwin+alt+v']
-
-  # Change focus from tiling lwindows -> floating -> fullscreen.
-  - commands: ['wm-cycle-focus']
-    bindings: ['lwin+alt+space']
-
-  # Change the focused lwindow to be floating.
+  # Change the focused window to be floating.
   - commands: ['toggle-floating --centered']
-    bindings: ['lwin+alt+shift+space']
+    bindings: ['lwin+f']
 
-  # Change the focused lwindow to be tiling.
-  - commands: ['toggle-tiling']
-    bindings: ['lwin+alt+t']
-
-  # Change the focused lwindow to be fullscreen.
+  # Change the focused window to be fullscreen.
   - commands: ['toggle-fullscreen']
-    bindings: ['lwin+alt+f']
+    bindings: ['lwin+shift+f']
 
-  # Minimize focused lwindow.
-  - commands: ['toggle-minimized']
-    bindings: ['lwin+alt+m']
+  # Change the focused window to be tiling.
+  - commands: ['toggle-tiling']
+    bindings: ['lwin+t']
 
   # Close focused lwindow.
   - commands: ['close']
-    bindings: ['lwin+alt+shift+q']
-
-  # Kill GlazeWM process safely.
-  - commands: ['wm-exit']
-    bindings: ['lwin+alt+shift+e']
-
-  # Re-evaluate configuration file.
-  - commands: ['wm-reload-config']
-    bindings: ['lwin+alt+shift+r']
-
-  # Redraw all lwindows.
-  - commands: ['wm-redraw']
-    bindings: ['lwin+alt+shift+w']
-
-  # Launch CMD terminal. lwin+alternatively, use `shell-exec wt` or
-  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start lwindows
-  # Terminal and Git Bash respectively.
-  - commands: ['shell-exec cmd']
-    bindings: ['lwin+alt+enter']
+    bindings: ['lwin+c']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']
-    bindings: ['lwin+alt+s']
+    bindings: ['lwin+n']
   - commands: ['focus --prev-active-workspace']
-    bindings: ['lwin+alt+a']
-
-  # Focus the workspace that last had focus.
-  - commands: ['focus --recent-workspace']
-    bindings: ['lwin+alt+d']
+    bindings: ['lwin+p']
 
   # Change focus to a workspace defined in `workspaces` config.
   - commands: ['focus --workspace 1']
-    bindings: ['lwin+alt+1']
+    bindings: ['lwin+1']
   - commands: ['focus --workspace 2']
-    bindings: ['lwin+alt+2']
+    bindings: ['lwin+2']
   - commands: ['focus --workspace 3']
-    bindings: ['lwin+alt+3']
+    bindings: ['lwin+3']
   - commands: ['focus --workspace 4']
-    bindings: ['lwin+alt+4']
+    bindings: ['lwin+4']
   - commands: ['focus --workspace 5']
-    bindings: ['lwin+alt+5']
+    bindings: ['lwin+5']
   - commands: ['focus --workspace 6']
-    bindings: ['lwin+alt+6']
+    bindings: ['lwin+6']
   - commands: ['focus --workspace 7']
-    bindings: ['lwin+alt+7']
+    bindings: ['lwin+7']
   - commands: ['focus --workspace 8']
-    bindings: ['lwin+alt+8']
+    bindings: ['lwin+8']
   - commands: ['focus --workspace 9']
-    bindings: ['lwin+alt+9']
-
-  # Move the focused lwindow's parent workspace to a monitor in a given
-  # direction.
-  - commands: ['move-workspace --direction left']
-    bindings: ['lwin+alt+shift+a']
-  - commands: ['move-workspace --direction right']
-    bindings: ['lwin+alt+shift+f']
-  - commands: ['move-workspace --direction up']
-    bindings: ['lwin+alt+shift+d']
-  - commands: ['move-workspace --direction down']
-    bindings: ['lwin+alt+shift+s']
-
-  # Move focused lwindow to a workspace defined in `workspaces` config.
-  - commands: ['move --workspace 1', 'focus --workspace 1']
-    bindings: ['lwin+alt+shift+1']
-  - commands: ['move --workspace 2', 'focus --workspace 2']
-    bindings: ['lwin+alt+shift+2']
-  - commands: ['move --workspace 3', 'focus --workspace 3']
-    bindings: ['lwin+alt+shift+3']
-  - commands: ['move --workspace 4', 'focus --workspace 4']
-    bindings: ['lwin+alt+shift+4']
-  - commands: ['move --workspace 5', 'focus --workspace 5']
-    bindings: ['lwin+alt+shift+5']
-  - commands: ['move --workspace 6', 'focus --workspace 6']
-    bindings: ['lwin+alt+shift+6']
-  - commands: ['move --workspace 7', 'focus --workspace 7']
-    bindings: ['lwin+alt+shift+7']
-  - commands: ['move --workspace 8', 'focus --workspace 8']
-    bindings: ['lwin+alt+shift+8']
-  - commands: ['move --workspace 9', 'focus --workspace 9']
-    bindings: ['lwin+alt+shift+9']
-
-binding_modes:
-  - name: 'resize'
-    keybindings:
-      - commands: ['wm-enable-binding-mode --name resize']
-        bindings: ['lwin+r']
-      - commands: ['resize --width -2%']
-        bindings: ['h']
-      - commands: ['resize --width +2%']
-        bindings: ['l']
-      - commands: ['resize --height -2%']
-        bindings: ['j']
-      - commands: ['resize --height +2%']
-        bindings: ['k']
-      - commands: ['wm-disable-binding-mode --name resize']
-        bindings: ['escape']
+    bindings: ['lwin+9']
