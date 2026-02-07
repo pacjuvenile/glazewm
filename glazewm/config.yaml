@@ -1,15 +1,16 @@
 general:
   # Commands to run when the WM has started. This is useful for running a script or launching another application.
-  # startup_commands: ['shell-exec zebar']
-  startup_commands: []
+  startup_commands: ['shell-exec zebar']
+  # startup_commands: []
 
   # Commands to run just before the WM is shutdown.
   shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
+  # shutdown_commands: []
 
   # Commands to run after the WM config is reloaded.
   config_reload_commands: []
 
-  # Whether to automatically focus lwindows underneath the cursor.
+  # Whether to automatically focus windows underneath the cursor.
   focus_follows_cursor: false
 
   # Whether to switch back and forth between the previously focused workspace when focusing the current workspace.
@@ -21,17 +22,17 @@ general:
 
     # Trigger for cursor jump:
     # - 'monitor_focus': Jump when focus changes between monitors.
-    # - 'lwindow_focus': Jump when focus changes between lwindows.
+    # - 'window_focus': Jump when focus changes between windows.
     trigger: 'monitor_focus'
 
-  # How lwindows should be hidden when switching workspaces.
-  # - 'cloak': Recommended. Hides lwindows with no animation.
+  # How windows should be hidden when switching workspaces.
+  # - 'cloak': Recommended. Hides windows with no animation.
   # - 'hide': Legacy method (v3.5 and earlier) that has a brief animation, but has stability issues with some apps.
   hide_method: 'cloak'
 
-  # Affects which lwindows get shown in the native lwindows taskbar. Has no effect if `hide_method: 'hide'`.
-  # - 'true': Show all lwindows (regardless of workspace).
-  # - 'false': Only show lwindows from the currently shown workspaces.
+  # Affects which windows get shown in the native windows taskbar. Has no effect if `hide_method: 'hide'`.
+  # - 'true': Show all windows (regardless of workspace).
+  # - 'false': Only show windows from the currently shown workspaces.
   show_all_in_taskbar: false
 
 workspaces:
@@ -45,66 +46,66 @@ workspaces:
   - name: '8'
   - name: '9'
 
-lwindow_behavior:
-  # New lwindows are created in this state whenever possible.
+window_behavior:
+  # New windows are created in this state whenever possible.
   # Allowed values: 'tiling', 'floating'.
   initial_state: 'tiling'
 
-  # Sets the default options for when a new lwindow is created. This also changes the defaults for when the state change commands, like `set-floating`, are used without any flags.
+  # Sets the default options for when a new window is created. This also changes the defaults for when the state change commands, like `set-floating`, are used without any flags.
   state_defaults:
     floating:
-      # Whether to center floating lwindows by default.
+      # Whether to center floating windows by default.
       centered: true
 
-      # Whether to show floating lwindows as always on top.
+      # Whether to show floating windows as always on top.
       shown_on_top: false
 
     fullscreen:
-      # Maximize the lwindow if possible. If the lwindow doesn't have a maximize button, then it'll be fullscreen'ed normally instead.
+      # Maximize the window if possible. If the window doesn't have a maximize button, then it'll be fullscreen'ed normally instead.
       maximized: false
 
-      # Whether to show fullscreen lwindows as always on top.
+      # Whether to show fullscreen windows as always on top.
       shown_on_top: false
 
 gaps:
   # Whether to scale the gaps with the DPI of the monitor.
   scale_with_dpi: true
 
-  # Gap between adjacent lwindows.
+  # Gap between adjacent windows.
   inner_gap: '15px'
 
-  # Gap between lwindows and the screen edge.
+  # Gap between windows and the screen edge.
   outer_gap:
     top: '50px'
     right: '15px'
     bottom: '15px'
     left: '15px'
 
-lwindow_effects:
-  # Visual effects to apply to the focused lwindow.
-  focused_lwindow:
-    # Highlight the lwindow with a colored border(Exclusive to lwindows 11 due to API limitations).
+window_effects:
+  # Visual effects to apply to the focused window.
+  focused_window:
+    # Highlight the window with a colored border(Exclusive to windows 11 due to API limitations).
     border:
       enabled: false
       color: '#8dbcff'
 
-    # Remove the title bar from the lwindow's frame. Note that this can cause rendering issues for some applications.
+    # Remove the title bar from the window's frame. Note that this can cause rendering issues for some applications.
     hide_title_bar:
       enabled: false
 
-    # Change the corner style of the lwindow's frame(Exclusive to lwindows 11 due to API limitations).
+    # Change the corner style of the window's frame(Exclusive to windows 11 due to API limitations).
     corner_style:
       enabled: false
       # Allowed values: 'square', 'rounded', 'small_rounded'.
       style: 'square'
 
-    # Change the transparency of the lwindow.
+    # Change the transparency of the window.
     transparency:
       enabled: false
       opacity: '100%'
 
-  # Visual effects to apply to non-focused lwindows.
-  other_lwindows:
+  # Visual effects to apply to non-focused windows.
+  other_windows:
     border:
       enabled: false
       color: '#a1a1a1'
@@ -117,29 +118,29 @@ lwindow_effects:
       enabled: false
       opacity: '0%'
 
-lwindow_rules:
+window_rules:
   - commands: ['ignore']
     match:
-      # Ignores any Zebar lwindows.
-      - lwindow_process: { equals: 'zebar' }
+      # Ignores any Zebar windows.
+      - window_process: { equals: 'zebar' }
 
-      # Ignores picture-in-picture lwindows for browsers.
-      - lwindow_title: { regex: '[Pp]icture.in.[Pp]icture' }
-        lwindow_class: { regex: 'Chrome_Widgetlwin_1|MozillaDialogClass' }
+      # Ignores picture-in-picture windows for browsers.
+      - window_title: { regex: '[Pp]icture.in.[Pp]icture' }
+        window_class: { regex: 'Chrome_Widgetwin_1|MozillaDialogClass' }
 
       # Ignore rules for various 3rd-party apps.
-      - lwindow_process: { equals: 'PowerToys' }
-        lwindow_class: { regex: 'HwndWrapper\[PowerToys\.PowerAccent.*?\]' }
-      - lwindow_process: { equals: 'PowerToys' }
-        lwindow_title: { regex: '.*? - Peek' }
-      - lwindow_process: { equals: 'Lively' }
-        lwindow_class: { regex: 'HwndWrapper' }
-      - lwindow_process: { equals: 'EXCEL' }
-        lwindow_class: { not_regex: 'XLMAIN' }
-      - lwindow_process: { equals: 'lwinWORD' }
-        lwindow_class: { not_regex: 'OpusApp' }
-      - lwindow_process: { equals: 'POWERPNT' }
-        lwindow_class: { not_regex: 'PPTFrameClass' }
+      - window_process: { equals: 'PowerToys' }
+        window_class: { regex: 'HwndWrapper\[PowerToys\.PowerAccent.*?\]' }
+      - window_process: { equals: 'PowerToys' }
+        window_title: { regex: '.*? - Peek' }
+      - window_process: { equals: 'Lively' }
+        window_class: { regex: 'HwndWrapper' }
+      - window_process: { equals: 'EXCEL' }
+        window_class: { not_regex: 'XLMAIN' }
+      - window_process: { equals: 'winWORD' }
+        window_class: { not_regex: 'OpusApp' }
+      - window_process: { equals: 'POWERPNT' }
+        window_class: { not_regex: 'PPTFrameClass' }
 
 keybindings:
   # Shift focus in a given direction.
@@ -294,8 +295,8 @@ keybindings:
 binding_modes:
   - name: 'resize'
     keybindings:
-      # - commands: ['wm-enable-binding-mode --name resize']
-      #   bindings: ['']
+      - commands: ['wm-enable-binding-mode --name resize']
+        bindings: ['lwin+r']
       - commands: ['resize --width -2%']
         bindings: ['h']
       - commands: ['resize --width +2%']
