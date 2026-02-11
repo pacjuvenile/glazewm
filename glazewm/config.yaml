@@ -34,15 +34,15 @@ general:
   show_all_in_taskbar: false
 
 workspaces:
-  - name: '1'
-  - name: '2'
-  - name: '3'
-  - name: '4'
-  - name: '5'
-  - name: '6'
-  - name: '7'
-  - name: '8'
-  - name: '9'
+  - name: 'gui'
+  - name: 'doc'
+  - name: 'code'
+  - name: 'dev'
+  - name: 'video'
+  - name: 'aux1'
+  - name: 'aux2'
+  - name: 'demo1'
+  - name: 'demo2'
 
 window_behavior:
   # New windows are created in this state whenever possible.
