@@ -34,15 +34,15 @@ general:
   show_all_in_taskbar: false
 
 workspaces:
-  - name: 'gui'
-  - name: 'doc'
-  - name: 'code'
-  - name: 'dev'
-  - name: 'video'
+  - name: 'gui1'
+  - name: 'gui2'
+  - name: 'code1'
+  - name: 'code2'
   - name: 'aux1'
   - name: 'aux2'
   - name: 'demo1'
   - name: 'demo2'
+  - name: 'video'
 
 window_behavior:
   # New windows are created in this state whenever possible.
@@ -140,3 +140,6 @@ window_rules:
       - window_process: { equals: 'POWERPNT' }
         window_class: { not_regex: 'PPTFrameClass' }
 
+keybindings:
+
+binding_modes:
