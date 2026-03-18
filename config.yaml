@@ -1,6 +1,6 @@
 general:
   # Commands to run when the WM has started. This is useful for running a script or launching another application.
-  startup_commands: ['shell-exec zebar startup --config-dir %USERPROFILE%\.config\zebar']
+  startup_commands: ['shell-exec zebar startup --config-dir %USERPROFILE%\.config\glazewm\zebar']
 
   # Commands to run just before the WM is shutdown.
   shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
