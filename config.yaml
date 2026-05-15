@@ -140,6 +140,11 @@ window_rules:
       - window_process: { equals: 'POWERPNT' }
         window_class: { not_regex: 'PPTFrameClass' }
 
+  - commands: ['set-floating'] 
+    match: 
+      - window_process: { regex: '.*([Ff]iji|[Ii]mage[Jj]|javaw?).*'  }
+        window_title: { regex: '.*([Ff]iji|[Ii]mage[Jj]).*' }
+
 keybindings:
 
 binding_modes:
